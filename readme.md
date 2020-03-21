@@ -1,7 +1,7 @@
 ## Notice
 
 The toolkit is currently in beta version, has not been extensively tested, and may have bugs.
-If you find any problems during use, please put an issue or contact the [author](wangxuey19@mails.tsinghua.edu.cn).
+If you find any problems during use, please put an issue or contact the [author](mailto:wangxuey19@mails.tsinghua.edu.cn).
 
 Many thanks to  [DOTA dataset devkit](https://github.com/CAPTAIN-WHU/DOTA_devkit).
 
