@@ -1,6 +1,6 @@
 # --------------------------------------------------------
 # Result merge modules for PANDA
-# Written by Wang Xueyang  (wangxuey19@mails.tsinghua.edu.cn), Version 20200321
+# Written by Wang Xueyang  (wangxuey19@mails.tsinghua.edu.cn), Version 20200523
 # Inspired from DOTA dataset devkit (https://github.com/CAPTAIN-WHU/DOTA_devkit)
 # --------------------------------------------------------
 
@@ -41,9 +41,9 @@ class DetResMerge():
         self.imgext = imgext
         self.code = code
         self.imgpath = os.path.join(self.basepath, 'PANDA_IMAGE')
-        self.respath = os.path.join(self.basepath, 'resJSONs', resfile)
-        self.splitannopath = os.path.join(self.basepath, 'annoJSONs', splitannofile)
-        self.srcannopath = os.path.join(self.basepath, 'annoJSONs', srcannofile)
+        self.respath = os.path.join(self.basepath, 'results', resfile)
+        self.splitannopath = os.path.join(self.basepath, 'image_annos', splitannofile)
+        self.srcannopath = os.path.join(self.basepath, 'image_annos', srcannofile)
         self.imagepaths = util.GetFileFromThisRootDir(self.imgpath, ext='jpg')
         if not os.path.exists(self.outpath):
             os.makedirs(self.outpath)

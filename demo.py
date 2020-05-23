@@ -1,6 +1,6 @@
 # --------------------------------------------------------
 # Tool kit function demonstration
-# Written by Wang Xueyang (wangxuey19@mails.tsinghua.edu.cn), Version 20200321
+# Written by Wang Xueyang (wangxuey19@mails.tsinghua.edu.cn), Version 20200523
 # Inspired from DOTA dataset devkit (https://github.com/CAPTAIN-WHU/DOTA_devkit)
 # --------------------------------------------------------
 
@@ -10,6 +10,10 @@ from ImgSplit import ImgSplit
 from ResultMerge import DetResMerge
 
 if __name__ == '__main__':
+    '''
+    Note:
+    The most common runtime error is file path error. For example, if you need to operate on the test set instead of the training set, you need to modify the folder path in __init__ part of corresponding Class (e.g. PANDA_IMAGE) from "image_train" to "image_test". If you encounter other file path errors, please also check the path settings in __init__ first.
+    '''
     image_root = 'G:/PANDA/PANDA_IMAGE'
     person_anno_file = 'human_bbox_train.json'
     annomode = 'person'
@@ -33,6 +37,11 @@ if __name__ == '__main__':
     '''
     4. Merge patches
     Now, we will merge these patches to see if they can be restored in the initial large images
+    '''
+    '''
+    Note:
+    GT2DetRes is used to generate 'fake' detection results (only visible body BBoxes are used) from ground-truth annotation. That means, GT2DetRes is designed to generate some intermediate results to demostrate functions. And in practical use, you doesn't need to use GT2DetRes because you have real detection results file on splited images and you can merge them using DetResMerge.
+    DetRes2GT is used to transfer the file format from COCO detection result file to PANDA annotation file in order to visualize detection results using PANDA_IMAGE apis. Noted that DetRes2GT is not yet fully designed and can only transfer objects from single category (visible body). If you have other requirements, please make your own changes.
     '''
     util.GT2DetRes('split/annoJSONs/split.json', 'split/resJSONs/res.json')
     merge = DetResMerge('split', 'res.json', 'split.json', 'human_bbox_all.json', 'results', 'mergetest.json')

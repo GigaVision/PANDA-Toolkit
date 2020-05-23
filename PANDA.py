@@ -1,6 +1,6 @@
 # --------------------------------------------------------
 # Visualization modules for PANDA
-# Written by Wang Xueyang  (wangxuey19@mails.tsinghua.edu.cn), Version 20200321
+# Written by Wang Xueyang  (wangxuey19@mails.tsinghua.edu.cn), Version 20200523
 # Inspired from DOTA dataset devkit (https://github.com/CAPTAIN-WHU/DOTA_devkit)
 # --------------------------------------------------------
 
@@ -31,9 +31,10 @@ class PANDA_IMAGE:
         self.annofile = annofile
         self.extraannofile = extraannofile
         self.showwidth = showwidth
-        self.imagepath = os.path.join(basepath, 'image_test')
+        self.imagepath = os.path.join(basepath, 'image_train')
         self.annopath = os.path.join(basepath, 'image_annos', annofile)
-        self.extraannopath = os.path.join(basepath, 'image_annos', extraannofile)
+        if extraannofile:
+            self.extraannopath = os.path.join(basepath, 'image_annos', extraannofile)
         self.imgpaths = util.GetFileFromThisRootDir(self.imagepath, ext='jpg')
         self.annos = defaultdict(list)
         self.extraannos = defaultdict(list)
@@ -135,8 +136,8 @@ class PANDA_IMAGE:
             if saveimg:
                 cv2.imwrite(os.path.join(savedir, util.custombasename(imgname) + '.jpg'), imgwithann)
             cv2.putText(img, 'Press any button to continue', (0, 25), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
-            # cv2.imshow(util.custombasename(imgname), imgwithann)
-            # cv2.waitKey(0)
+            cv2.imshow('image_with_anno', imgwithann)  # image_with_anno --> util.custombasename(imgname)
+            cv2.waitKey(0)
 
     def loadImg(self, imgpath):
         """

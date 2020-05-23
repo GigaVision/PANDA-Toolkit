@@ -1,6 +1,6 @@
 # --------------------------------------------------------
 # Image and annotations splitting modules for PANDA
-# Written by Wang Xueyang  (wangxuey19@mails.tsinghua.edu.cn), Version 20200321
+# Written by Wang Xueyang  (wangxuey19@mails.tsinghua.edu.cn), Version 20200523
 # Inspired from DOTA dataset devkit (https://github.com/CAPTAIN-WHU/DOTA_devkit)
 # --------------------------------------------------------
 
@@ -50,10 +50,10 @@ class ImgSplit():
         self.slidewidth = self.subwidth - self.gap
         self.slideheight = self.subheight - self.gap
         self.thresh = thresh
-        self.imagepath = os.path.join(self.basepath, 'PANDA_IMAGE')
-        self.annopath = os.path.join(self.basepath, 'annoJSONs', annofile)
-        self.outimagepath = os.path.join(self.outpath, 'PANDA_IMAGE')
-        self.outannopath = os.path.join(self.outpath, 'annoJSONs')
+        self.imagepath = os.path.join(self.basepath, 'image_train')
+        self.annopath = os.path.join(self.basepath, 'image_annos', annofile)
+        self.outimagepath = os.path.join(self.outpath, 'image_train')
+        self.outannopath = os.path.join(self.outpath, 'image_annos')
         self.outext = outext
         if not os.path.exists(self.outimagepath):
             os.makedirs(self.outimagepath)

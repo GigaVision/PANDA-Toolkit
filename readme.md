@@ -8,8 +8,8 @@ Many thanks to  [DOTA dataset devkit](https://github.com/CAPTAIN-WHU/DOTA_devkit
 
 ## Functions
 
-The code is useful for <a href="http://www.panda-dataset.com/">PANDA<a> or
-<a href="https://www.biendata.com/competition/gigavision/">GigaVision Challenge<a>. The code provide the following function
+The code is useful for <a href="http://www.panda-dataset.com/">PANDA Dataset<a> or
+GigaVision Challenge (<a href="https://www.biendata.com/competition/gigavision/">Task1<a> and <a href="https://www.biendata.com/competition/gigavision1/">Task2<a>). The code provide the following function:
 
 <ul>
     <li>
