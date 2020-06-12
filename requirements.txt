@@ -2,5 +2,6 @@ numpy>=1.12.1
 scipy>=0.19.0
 Cython
 pycocotools
+lap
 motmetrics
 opencv-python
