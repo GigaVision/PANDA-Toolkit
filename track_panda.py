@@ -3,7 +3,6 @@ import os.path as osp
 import cv2
 import logging
 import argparse
-import motmetrics as mm
 
 from tracker.multitracker import JDETracker, JDE_PANDA_Tracker
 from utils import visualization as vis
@@ -13,6 +12,19 @@ from utils.evaluation import Evaluator
 import utils.datasets as datasets
 import torch
 from utils.utils import *
+import zipfile
+
+
+def make_zip(source_dir, output_filename):
+    zipf = zipfile.ZipFile(output_filename, 'w')
+    pre_len = len(os.path.dirname(source_dir))
+    for parent, dirnames, filenames in os.walk(source_dir):
+        for filename in filenames:
+            pathfile = os.path.join(parent, filename)
+            arcname = pathfile[pre_len:].strip(os.path.sep)  # 相对路径
+            zipf.write(pathfile, arcname)
+    zipf.close()
+    print('save in {}'.format(output_filename))
 
 
 def write_results(filename, results, data_type):
@@ -90,8 +102,13 @@ def main_for_panda(
     show_image=True,
 ):
     logger.setLevel(logging.INFO)
-    result_root = os.path.join('results', exp_name)
+    # result_root = os.path.join('results', exp_name)
+    result_root = 'results'
+    output_root = 'vis_results'
+
     mkdir_if_missing(result_root)
+    mkdir_if_missing(output_root)
+
     data_type = 'mot'
 
     # run tracking
@@ -99,11 +116,11 @@ def main_for_panda(
     n_frame = 0
     timer_avgs, timer_calls = [], []
 
-    output_dir = os.path.join(result_root, 'outputs') if save_images or save_videos else None
     logger.info('start seq: {}'.format(exp_name))
 
     dataloader = datasets.LoadPandaImages(data_root, opt.img_size)
     result_filename = os.path.join(result_root, '{}.txt'.format(exp_name))
+    output_dir = os.path.join(output_root, exp_name) if save_images or save_videos else None
 
     frame_rate = 30
 
@@ -148,12 +165,24 @@ if __name__ == '__main__':
     opt = parser.parse_args()
     print(opt, end='\n\n')
 
-    data_root = '/media/goolo/新加卷/PANDA/PANDA_VIDEO/video_test/15_Dongmen_Street'
-    main_for_panda(
-        opt,
-        data_root=data_root,
-        exp_name=data_root.split('/')[-1],
-        show_image=False,
-        save_images=True,
-        save_videos=False,
-    )
+    root = '/tcdata'
+    scenes = [
+        'panda_round2_test_20210331_A_part1/11_Train_Station_Square',
+        'panda_round2_test_20210331_A_part2/12_Nanshan_i_Park',
+        'panda_round2_test_20210331_A_part3/13_University_Playground',
+    ]
+
+    for scene in scenes:
+        data_root = os.path.join(root, scene)
+        main_for_panda(
+            opt,
+            data_root=data_root,
+            exp_name=data_root.split('/')[-1],
+            show_image=False,
+            save_images=False,
+            save_videos=False,
+        )
+    
+    # 打包为提交格式results.zip
+    make_zip('results','results.zip')
+

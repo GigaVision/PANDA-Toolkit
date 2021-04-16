@@ -168,23 +168,7 @@ class myInfer(inferServer):
         return processed_data
 
 
-# class mymodel(nn.Module):
-#     def __init__(self):
-#         self.model = lambda x: x * 2
-
-# def forward(self, x):
-#     y = self.model(x)
-#     print('y = {}'.format(y))
-#     return y
-
-
 if __name__ == "__main__":
-
-    # mymodel = lambda x: x * 2
-    # my_infer = myInfer(mymodel)
-    # my_infer.run("127.0.0.1", 1234, debuge=True)  #
-    # 默认为 ("127.0.0.1",80),可自定义端口
-
     parser = argparse.ArgumentParser(prog='track.py')
     parser.add_argument('--cfg', type=str, default='cfg/yolov3_1088x608.cfg', help='cfg file path')
     parser.add_argument(

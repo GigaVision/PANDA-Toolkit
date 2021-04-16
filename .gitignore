@@ -1,4 +1,5 @@
 results/
+vis_results/
 submit_results/
 
 weights/
@@ -112,3 +113,6 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+./submit_results.py
+
