@@ -5,3 +5,4 @@ pycocotools
 lap
 motmetrics
 opencv-python
+funcy
