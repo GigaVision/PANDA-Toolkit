@@ -166,7 +166,7 @@ if __name__ == '__main__':
     print(opt, end='\n\n')
 
     '''change the root setting here for offline test'''
-    root = 'YOUR/PATH'
+    # root = 'YOUR/PATH'
     root = '/tcdata'
 
     scenes = [
