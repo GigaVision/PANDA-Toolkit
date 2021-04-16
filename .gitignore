@@ -2,7 +2,7 @@ results/
 vis_results/
 submit_results/
 
-weights/
+weights/*
 data/mot17
 data/mot19
 tmp/

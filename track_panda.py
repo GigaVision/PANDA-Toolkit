@@ -165,7 +165,10 @@ if __name__ == '__main__':
     opt = parser.parse_args()
     print(opt, end='\n\n')
 
+    '''change the root setting here for offline test'''
+    root = 'YOUR/PATH'
     root = '/tcdata'
+
     scenes = [
         'panda_round2_test_20210331_A_part1/11_Train_Station_Square',
         'panda_round2_test_20210331_A_part2/12_Nanshan_i_Park',
